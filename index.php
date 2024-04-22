@@ -96,9 +96,14 @@ $select_sql = mysqli_query($conn, $display_query);
             <?php while ($list_todo = mysqli_fetch_assoc($select_sql)) : ?>
                 <ul class="ul_todo">
                     <li>
-                        <?= $list_todo['todo_name'];
-                        $datas_id = $_GET["todo_id"]; ?>
                         <a href="update_todo.php?id=<?= $list_todo['todo_id'] ?>">Selesai</a>
+                        <?php
+                        if ($list_todo['todo_status'] == 1) {
+                            echo "<strike>" . $list_todo["todo_name"] . "</strike>";
+                        } else {
+                            echo $list_todo['todo_name'];
+                        }
+                        ?>
                     </li>
                 </ul>
             <?php endwhile; ?>
