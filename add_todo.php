@@ -4,12 +4,16 @@ $conn = include('config.php');
 if (isset($_POST["submit"])) {
     $todo = htmlspecialchars($_POST["todo"]);
     $status = 0;
-    $add_query = "INSERT INTO TODO_LIST (todo_name) VALUES ('$todo');";
-    $todo_add = mysqli_query($conn, $add_query);
-    if ($todo_add) {
-        header("Location: index.php");
+    if ($todo < 0) {
+        echo '<script>alert("Salah input");</script>';
     } else {
-        echo "Error: " . $add_query . "<br>" . mysqli_error($conn);
+        $add_query = "INSERT INTO TODO_LIST (todo_name) VALUES ('$todo');";
+        $todo_add = mysqli_query($conn, $add_query);
+        if ($todo_add) {
+            header("Location: index.php");
+        } else {
+            echo "Error: " . $add_query . "<br>" . mysqli_error($conn);
+        }
     }
 }
 ?>
