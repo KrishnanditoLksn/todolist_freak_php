@@ -1,3 +1,9 @@
+<?php
+$conn = include('config.php');
+$display_query = "SELECT todo_name FROM TODO_LIST";
+$select_sql = mysqli_query($conn, $display_query);
+?>
+
 <!doctype html>
 <html lang="en">
 <style>
@@ -36,8 +42,16 @@
         flex-direction: column;
     }
 
+    .container_todo {
+        margin-top: 5px;
+        margin-right: 50px;
+    }
+
     .ul_todo {
         padding-left: 17px;
+        font-family: "Jetbrains Mono", monospace;
+        color: darkgreen;
+        font-size: x-large;
     }
 
     .link_add {
@@ -75,16 +89,18 @@
 
 <body>
     <div class="container">
+        <h1 class="names">
+            Halo , Selamat datang di Freak Todolist
+        </h1>
         <div class="container_todo">
-            <h1 class="names">
-                Halo , Selamat datang di Freak Todolist
-            </h1>
-            <ul class="ul_todo">
-                <li>
 
-                </li>
-            </ul>
-
+            <?php while ($list_todo = mysqli_fetch_assoc($select_sql)) : ?>
+                <ul class="ul_todo">
+                    <li>
+                        <?= $list_todo['todo_name'] ?>
+                    </li>
+                </ul>
+            <?php endwhile; ?>
         </div>
         </br>
         <div class="container_add">
