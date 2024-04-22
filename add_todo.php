@@ -1,4 +1,21 @@
 <?php
+$conn = include('config.php');
+
+if (isset($_POST["submit"])) {
+    $todo = htmlspecialchars($_POST["todo"]);
+    $status = 0;
+    if ($todo < 0) {
+        echo '<script>alert("Salah input");</script>';
+    } else {
+        $add_query = "INSERT INTO TODO_LIST (todo_name) VALUES ('$todo');";
+        $todo_add = mysqli_query($conn, $add_query);
+        if ($todo_add) {
+            header("Location: index.php");
+        } else {
+            echo "Error: " . $add_query . "<br>" . mysqli_error($conn);
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,11 +103,11 @@
             Add your todo
         </h1>
         <div class="form_container">
-            <form action="add_todo.php" method="post" class="forms">
+            <form method="post" class="forms">
                 <label for="todo">
                     TODO
                 </label>
-                <input type="text" name="todo"><br>
+                <input type="text" id="todo" name="todo"><br>
                 <input type="submit" class="submit_input" name="submit" value="SUBMIT">
             </form>
         </div>
