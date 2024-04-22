@@ -97,6 +97,7 @@ $select_sql = mysqli_query($conn, $display_query);
                 <ul class="ul_todo">
                     <li>
                         <a href="update_todo.php?id=<?= $list_todo['todo_id'] ?>">Selesai</a>
+                        <a href="delete_todo.php?id=<?= $list_todo['todo_id'] ?>">Hapus</a>
                         <?php
                         if ($list_todo['todo_status'] == 1) {
                             echo "<strike>" . $list_todo["todo_name"] . "</strike>";
