@@ -1,6 +1,6 @@
 <?php
 $conn = include('config.php');
-$display_query = "SELECT todo_name FROM TODO_LIST";
+$display_query = "SELECT * FROM TODO_LIST";
 $select_sql = mysqli_query($conn, $display_query);
 ?>
 
@@ -93,11 +93,17 @@ $select_sql = mysqli_query($conn, $display_query);
             Halo , Selamat datang di Freak Todolist
         </h1>
         <div class="container_todo">
-
             <?php while ($list_todo = mysqli_fetch_assoc($select_sql)) : ?>
                 <ul class="ul_todo">
                     <li>
-                        <?= $list_todo['todo_name'] ?>
+                        <a href="update_todo.php?id=<?= $list_todo['todo_id'] ?>">Selesai</a>
+                        <?php
+                        if ($list_todo['todo_status'] == 1) {
+                            echo "<strike>" . $list_todo["todo_name"] . "</strike>";
+                        } else {
+                            echo $list_todo['todo_name'];
+                        }
+                        ?>
                     </li>
                 </ul>
             <?php endwhile; ?>
