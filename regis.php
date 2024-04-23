@@ -1,3 +1,25 @@
+<?php
+$conn = include('config.php');
+if (isset($_POST["submit"])) {
+    $username = htmlspecialchars($_POST["fname"]);
+    $password = sha1($_POST["password"]);
+
+    if ($username < 0 || $password < 0) {
+        echo '<script>alert("Isi Pilihan anda");</script>';
+    } else {
+        //cek username ada
+        $user_validation = mysqli_query($conn, "SELECT user_name FROM TODO_USER WHERE user_name = '$username'; ");
+        if (mysqli_fetch_assoc($user_validation)) {
+            echo '<script>alert("Username sudah ada ");</script>';
+        } else {
+            $user_add = "INSERT INTO TODO_USER (user_name , user_password) VALUES ('$username','$password')";
+            $add_query = mysqli_query($conn, $user_add);
+            header("Location: index.php");
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <style>
@@ -75,14 +97,14 @@
     <div class="container">
         <div class="form-container">
             <h1>Registrasi User Freak</h1>
-            <form method="post" class="regis_forms">
+            <form action="regis.php" method="post" class="regis_forms">
                 <div class="regis_input">
                     <label for="fname">Nama Lengkap:</label><br>
                     <input type="text" id="fname" name="fname"><br>
                     <label for="password">Password:</label><br>
                     <input type="password" id="password" name="password"><br><br>
                 </div>
-                <input type="submit" class="submit-regis" value="Registrasi">
+                <input type="submit" class="submit-regis" name="submit" value="Registrasi">
             </form>
         </div>
     </div>
