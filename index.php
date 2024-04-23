@@ -1,33 +1,30 @@
 <?php
 $conn = include('config.php');
-$display_query = "SELECT * FROM TODO_LIST";
-$select_sql = mysqli_query($conn, $display_query);
-?>
 
-<!doctype html>
+if (isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $login_user = "SELECT * FROM TODO_USER WHERE user_name = '$username' AND user_password = '$password' ";
+    $login_query = mysqli_query($conn, $login_user);
+    $login_row = mysqli_num_rows($login_query);
+    if (mysqli_fetch_row($login_query)) {
+        header("Location: todo.php");
+        exit();
+    } else {
+        echo '<script>alert("Username atau Password Salah !!");</script>';
+    }
+}
+?>
+<!DOCTYPE html>
 <html lang="en">
 <style>
     body {
-        background-color: aliceblue;
+        background: url("intellij-2023.2-1920x1080.png");
     }
 
-    .names {
-        font-size: xl;
-        font-family: "JetBrains Mono", monospace;
-        color: darkolivegreen;
-        width: 200px;
-        height: 200px;
-    }
-
-    h2 {
-        font-size: xl;
-        font-family: "JetBrains Mono", monospace;
-        color: darkolivegreen;
-    }
-
-    a {
-        text-decoration: none;
-        color: #5e4800;
+    .container {
+        font-family: "Poppins", sans-serif;
     }
 
     .container {
@@ -37,88 +34,76 @@ $select_sql = mysqli_query($conn, $display_query);
         align-items: center;
     }
 
-    .container_add {
-        padding-top: 20%;
-        flex-direction: column;
+    .form-container {
+        padding: 50px;
+        background-color: aliceblue;
+        border-radius: 10px;
+        margin-top: 100px;
     }
 
-    .container_todo {
-        margin-top: 5px;
-        margin-right: 50px;
+    h1 {
+        text-align: center;
+        margin-bottom: 100px;
     }
 
-    .ul_todo {
-        padding-left: 17px;
-        font-family: "Jetbrains Mono", monospace;
-        color: darkgreen;
-        font-size: x-large;
-    }
-
-    .link_add {
-        text-decoration-style: none;
-    }
-
-    .btn_link_to_add {
+    .btn-login {
+        margin-top: 40px;
+        margin-left: 100px;
         box-shadow: 0 4px #c1a23c;
         color: #5e4800;
-        background-color: #ffd95e;
+        background-color: white;
         text-transform: uppercase;
         padding: 10px 20px 20px;
-        border-radius: 5px;
+        border-radius: 2px;
         margin-bottom: 20px;
         transition: all .2s ease;
         font-weight: 900;
         cursor: pointer;
         letter-spacing: 1px;
+        margin-right: 50px;
     }
 
-    .btn_link_to_add:active {
-        box-shadow: 0 1px #c1a23c;
-        transform: translateY(3px);
+    .link-regis {
+        margin-left: 35px;
+    }
+
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px 15px;
+        margin: 10px 0;
+        box-sizing: border-box;
     }
 </style>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>freak Todo's</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Login Freak's</title>
 </head>
 
 <body>
     <div class="container">
-        <h1 class="names">
-            Halo , Selamat datang di Freak Todolist
-        </h1>
-        <div class="container_todo">
-            <?php while ($list_todo = mysqli_fetch_assoc($select_sql)) : ?>
-                <ul class="ul_todo">
-                    <li>
-                        <a href="update_todo.php?id=<?= $list_todo['todo_id'] ?>">Selesai</a>
-                        <a href="delete_todo.php?id=<?= $list_todo['todo_id'] ?>">Hapus</a>
-                        <?php
-                        if ($list_todo['todo_status'] == 1) {
-                            echo "<strike>" . $list_todo["todo_name"] . "</strike>";
-                        } else {
-                            echo $list_todo['todo_name'];
-                        }
-                        ?>
-                    </li>
-                </ul>
-            <?php endwhile; ?>
-        </div>
-        </br>
-        <div class="container_add">
-            <h2 class="add_kegiatan_font">
-                Tambah Kegiatan
-            </h2>
-            <button class="btn_link_to_add">
-                <a href="add_todo.php">
-                    Tambah Kegiatan
-                </a>
-            </button>
+        <div class="form-container">
+            <form method="post" class="form-class">
+                <h1>Login Freak</h1>
+                <label for="username">Username</label>
+                <input type="text" name="username"></br>
+                <label for="password">Password</label>
+                <input type="password" name="password"></br>
+                <input type="submit" name="submit" class="btn-login" value="Login">
+            </form>
+            <div class="link-regis">
+                <h5>Belum punya akun?
+                    <a href="regis.php">
+                        Registrasi disini
+                    </a>
+                </h5>
+            </div>
         </div>
     </div>
 </body>
