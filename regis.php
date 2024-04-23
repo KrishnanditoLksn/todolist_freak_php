@@ -10,7 +10,7 @@ if (isset($_POST["submit"])) {
         $user_validation = mysqli_query($conn, "SELECT user_name FROM TODO_USER WHERE user_name = '$username'; ");
         if (mysqli_fetch_assoc($user_validation)) {
             echo '<script>alert("Akun sudah ada ");</script>';
-            header("Location: login.php");
+            header("Location: index.php");
         } else {
             $user_add = "INSERT INTO TODO_USER (user_name , user_password) VALUES ('$username','$password')";
             $add_query = mysqli_query($conn, $user_add);
