@@ -2,8 +2,7 @@
 $conn = include('config.php');
 if (isset($_POST["submit"])) {
     $username = htmlspecialchars($_POST["fname"]);
-    $password = sha1($_POST["password"]);
-
+    $password = $_POST["password"];
     if ($username < 0 || $password < 0) {
         echo '<script>alert("Isi Pilihan anda");</script>';
     } else {
