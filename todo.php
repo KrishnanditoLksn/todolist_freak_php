@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (!isset($_SESSION["user_login"])) {
+    header("Location: index.php");
+}
+
 $conn = include('config.php');
 $display_query = "SELECT * FROM TODO_LIST";
 $select_sql = mysqli_query($conn, $display_query);

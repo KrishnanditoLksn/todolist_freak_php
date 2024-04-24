@@ -1,11 +1,17 @@
 <?php
-$conn = include('config.php');
+session_start();
 
+if (!isset($_SESSION["user_login"])) {
+    header("Location: index.php");
+}
+
+$conn = include('config.php');
 if (isset($_POST["submit"])) {
     $todo = htmlspecialchars($_POST["todo"]);
     $status = 0;
     if ($todo < 0) {
-        echo '<script>alert("Salah input");</script>';
+        echo '<script>alert("Salah input");</
+        script>';
     } else {
         $add_query = "INSERT INTO TODO_LIST (todo_name) VALUES ('$todo');";
         $todo_add = mysqli_query($conn, $add_query);
