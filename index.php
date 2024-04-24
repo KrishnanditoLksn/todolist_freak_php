@@ -4,7 +4,6 @@ $conn = include('config.php');
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-
     $login_user = "SELECT * FROM TODO_USER WHERE user_name = '$username' AND user_password = '$password' ";
     $login_query = mysqli_query($conn, $login_user);
     $logged_user = mysqli_fetch_assoc($login_query);

@@ -13,10 +13,11 @@ if (isset($_POST["submit"])) {
         echo '<script>alert("Salah input");</
         script>';
     } else {
-        $add_query = "INSERT INTO TODO_LIST (todo_name) VALUES ('$todo');";
+        $user = $_SESSION["id_user"];
+        $add_query = "INSERT INTO TODO_LIST (todo_name,todo_user_id) VALUES ('$todo' ,$user);";
         $todo_add = mysqli_query($conn, $add_query);
         if ($todo_add) {
-            header("Location: index.php");
+            header("Location: todo.php");
         } else {
             echo "Error: " . $add_query . "<br>" . mysqli_error($conn);
         }
