@@ -7,5 +7,5 @@ if (isset($todo_id)) {
                 SET todo_status = 1 
                 WHERE todo_id = ($todo_id)";
     $update_query = mysqli_query($conn, $status_update);
-    header("Location: index.php");
+    header("Location: todo.php");
 }

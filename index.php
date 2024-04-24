@@ -1,14 +1,15 @@
 <?php
+session_start();
 $conn = include('config.php');
-
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-
     $login_user = "SELECT * FROM TODO_USER WHERE user_name = '$username' AND user_password = '$password' ";
     $login_query = mysqli_query($conn, $login_user);
-    $login_row = mysqli_num_rows($login_query);
-    if (mysqli_fetch_row($login_query)) {
+    $logged_user = mysqli_fetch_assoc($login_query);
+    if ($logged_user) {
+        $_SESSION["user_login"] = true;
+        $_SESSION["id_user"] = $logged_user["user_id"];
         header("Location: todo.php");
         exit();
     } else {

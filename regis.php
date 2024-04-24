@@ -1,4 +1,5 @@
 <?php
+
 $conn = include('config.php');
 if (isset($_POST["submit"])) {
     $username = htmlspecialchars($_POST["fname"]);

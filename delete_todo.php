@@ -6,5 +6,5 @@ $delete_todo = "DELETE FROM
                 WHERE todo_id = $todo_id;";
 $delete_query = mysqli_query($conn, $delete_todo);
 if ($delete_query) {
-    header("Location: index.php");
+    header("Location: todo.php");
 }

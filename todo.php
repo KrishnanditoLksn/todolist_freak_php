@@ -1,6 +1,11 @@
 <?php
+session_start();
+if (!isset($_SESSION["user_login"])) {
+    header("Location: index.php");
+}
 $conn = include('config.php');
-$display_query = "SELECT * FROM TODO_LIST";
+$user = $_SESSION["id_user"];
+$display_query = "SELECT * FROM TODO_LIST WHERE todo_user_id = $user";
 $select_sql = mysqli_query($conn, $display_query);
 ?>
 
