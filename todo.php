@@ -125,6 +125,13 @@ $select_sql = mysqli_query($conn, $display_query);
                 </a>
             </button>
         </div>
+        <div class="container-logout">
+            <button class="btn-logout">
+                <a href="logout.php">
+                    Logout
+                </a>
+            </button>
+        </div>
     </div>
 </body>
 
