@@ -29,6 +29,7 @@ if (isset($_POST["submit"])) {
 <style>
     body {
         background-color: aliceblue;
+        background: url('intellij-2023.2-1920x1080.png');
     }
 
     br {
@@ -47,7 +48,7 @@ if (isset($_POST["submit"])) {
     .submit_input,
     a {
         font-family: "Jetbrains Mono", monospace;
-        color: #5e4800;
+        color: black;
     }
 
     .forms {

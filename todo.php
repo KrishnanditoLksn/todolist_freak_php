@@ -14,12 +14,13 @@ $select_sql = mysqli_query($conn, $display_query);
 <style>
     body {
         background-color: aliceblue;
+        background: url('intellij-2023.2-1920x1080.png');
     }
 
     .names {
         font-size: xl;
         font-family: "JetBrains Mono", monospace;
-        color: darkolivegreen;
+        color: white;
         width: 200px;
         height: 200px;
     }
@@ -27,12 +28,12 @@ $select_sql = mysqli_query($conn, $display_query);
     h2 {
         font-size: xl;
         font-family: "JetBrains Mono", monospace;
-        color: darkolivegreen;
+        color: white;
     }
 
     a {
         text-decoration: none;
-        color: #5e4800;
+        color: white;
     }
 
     .container {
@@ -81,6 +82,46 @@ $select_sql = mysqli_query($conn, $display_query);
         box-shadow: 0 1px #c1a23c;
         transform: translateY(3px);
     }
+
+
+    .container-logout {}
+
+    .btn-logout {
+        overflow: hidden;
+        box-shadow: inset 0 0 .5rem .3rem rgba(255, 255, 255, 0);
+        color: white;
+        background-color: orange;
+        position: relative;
+        border: 2px solid rgba(0, 0, 0, .3);
+        text-transform: uppercase;
+        padding: 10px 25px;
+        border-radius: 3px;
+        transition: all .25s ease;
+        font-weight: bold;
+        cursor: pointer;
+        letter-spacing: 1px;
+        font-size: 16px;
+    }
+
+    .btn-logout:hover {
+        box-shadow: inset 0 0 1rem 0 rgba(218, 218, 218, 0.4);
+        color: #fff;
+    }
+
+    .btn-logout:hover::before {
+        left: -100%;
+    }
+
+    .btn-logout::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(218, 218, 218, 0.4), transparent);
+        transition: all .25s ease;
+    }
 </style>
 
 <head>
@@ -125,13 +166,13 @@ $select_sql = mysqli_query($conn, $display_query);
                 </a>
             </button>
         </div>
-        <div class="container-logout">
-            <button class="btn-logout">
-                <a href="logout.php">
-                    Logout
-                </a>
-            </button>
-        </div>
+    </div>
+    <div class="container-logout">
+        <button class="btn-logout">
+            <a href="logout.php">
+                Logout
+            </a>
+        </button>
     </div>
 </body>
 
