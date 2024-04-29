@@ -14,7 +14,7 @@ $select_sql = mysqli_query($conn, $display_query);
 <style>
     body {
         background-color: aliceblue;
-        background: url('intellij-2023.2-1920x1080.png');
+        background: url('intellij-2023.3-1920x1080.png');
     }
 
     .names {
@@ -82,9 +82,6 @@ $select_sql = mysqli_query($conn, $display_query);
         box-shadow: 0 1px #c1a23c;
         transform: translateY(3px);
     }
-
-
-    .container-logout {}
 
     .btn-logout {
         overflow: hidden;
