@@ -1,0 +1,6 @@
+ALTER TABLE `TODO_LIST`
+    ADD todo_user_id INT,
+    ADD CONSTRAINT FOREIGN KEY(todo_user_id) REFERENCES `TODO_USER`(user_id);
+
+ALTER TABLE `TODO_USER`
+ADD CONSTRAINT UNIQUE (user_name, user_password);

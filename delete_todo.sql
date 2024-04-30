@@ -1,0 +1,1 @@
+DELETE FROM `TODO_LIST` WHERE todo_id = 9;

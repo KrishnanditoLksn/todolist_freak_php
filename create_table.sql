@@ -1,0 +1,7 @@
+CREATE TABLE TODO_USER (
+    user_id INT(7) NOT NULL, user_name CHARACTER(255) NOT NULL, user_password CHARACTER(255) NOT NULL, PRIMARY KEY (user_id)
+);
+
+CREATE TABLE TODO_LIST (
+    todo_id INT(7) NOT NULL, todo_name CHARACTER(255) NOT NULL, PRIMARY KEY (todo_id), todo_status INT(255) NOT NULL
+);
