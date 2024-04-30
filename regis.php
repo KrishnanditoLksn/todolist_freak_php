@@ -4,6 +4,7 @@ $conn = include('config.php');
 if (isset($_POST["submit"])) {
     $username = htmlspecialchars($_POST["fname"]);
     $password = $_POST["password"];
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     if ($username < 0 || $password < 0) {
         echo '<script>alert("Isi Pilihan anda");</script>';
     } else {
@@ -13,7 +14,7 @@ if (isset($_POST["submit"])) {
             echo '<script>alert("Akun sudah ada ");</script>';
             header("Location: index.php");
         } else {
-            $user_add = "INSERT INTO TODO_USER (user_name , user_password) VALUES ('$username','$password')";
+            $user_add = "INSERT INTO TODO_USER (user_name , user_password) VALUES ('$username','$hashed_password')";
             $add_query = mysqli_query($conn, $user_add);
             header("Location: index.php");
         }
